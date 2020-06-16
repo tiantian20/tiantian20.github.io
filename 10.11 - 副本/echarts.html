@@ -1,0 +1,2447 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class=""><!--<![endif]-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<html lang="en" class="no-ie" style="overflow-y:visible;">
+<html lang="en" class="no-js">
+	<head>
+	
+		
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>汽车销量大数据图表</title>
+		<meta name="description" content="Examples for creative website header animations using Canvas and JavaScript" />
+		<meta name="keywords" content="header, canvas, animated, creative, inspiration, javascript" />
+		<meta name="author" content="Codrops" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+		<!-- <link href='http://fonts.googleapis.com/css?family=Raleway:200,400,800' rel='stylesheet' type='text/css'> -->
+		
+		<!--[if IE]>
+			
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		 <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.js"></script>
+		  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+		  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="echarts.js" type="text/javascript" ></script>
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.js"></script>
+		  <script>
+        $(function(){
+          var li = $('#tabs');
+          var cc=$('#tabs option');
+          var len=cc.length;
+          li.change(function(){
+              var t = parseInt(li.get(0).selectedIndex);
+              for(var i= 0;i<len;i++){
+                  if(t==i){
+                      $('#chanpin'+t).show();
+                   }else{
+                     $('#chanpin'+i).hide();
+                   }
+                }
+          });
+      });
+    </script>
+    <script>
+        $(function(){
+          var li = $('#tabs1');
+          var cc=$('#tabs1 option');
+          var len=cc.length;
+          li.change(function(){
+              var t = parseInt(li.get(0).selectedIndex);
+              for(var i= 0;i<len;i++){
+                  if(t==i){
+                      $('#chanpi'+t).show();
+                   }else{
+                     $('#chanpi'+i).hide();
+                   }
+                }
+          });
+      });
+    </script>
+    <style>
+        body,html{
+        	 scroll-behavior: smooth;
+  
+}
+        #content .active{
+            display: block;
+        }
+        .chart{
+            width: 1500px;
+            height: 740px;
+        }
+        .none {
+            display: none;
+        }
+        .selector{
+        	position: relative;
+        	left: 20px;
+        	top: 10px;
+        }
+    </style>
+    <style type="text/css">
+
+html{    
+
+    overflow-x: hidden;    
+
+      
+
+}    
+
+</style>
+	</head>
+	<body id="gotop">
+		<span  name="gotop"></span>
+		
+		
+		<a name="top"></a>
+		<div class="container demo-1">
+			  <audio id="audio1"  src="images/runsound1.mp3"  ></audio>
+            <audio id="audio3"  src="images/runsound2.mp3"  ></audio>
+             <audio id="audio2"  src="images/runsound3.mp3"  ></audio>
+              <audio id="audio"  src="images/runsound.mp3"  ></audio>
+           
+			
+			<a href="#zhu" onclick="play1()" style="position: fixed; top: 100px;right:30px;z-index: 9999;font-size: 20px;">去看销量数据</a>
+			<a href="#zhe" onclick="play1()" style="position: fixed; top: 200px;right:30px;z-index: 9999;font-size: 20px;">去看销量趋势</a>
+			<a href="#sun" onclick="play2()" style="position: fixed; top: 300px;right:30px;z-index: 9999;font-size: 20px;">去看类型车系</a>
+			<a href="#pie" onclick="play2()" style="position: fixed; top: 400px;right:30px;z-index: 9999;font-size: 20px;">去看市场占比</a>
+		    <a href="#predict" onclick="play2()" style="position: fixed; top: 500px;right:30px;z-index: 9999;font-size: 20px;">去看销量预测</a>
+			
+         
+            <a href="#top" onclick="yalp()" return false" style="position: fixed; top: 620px;z-index: 9;font-size: 50px;right: 20px;"><img src="images/xpc2.png"   id="gotop" style="transform: rotate(360deg);width: 60px;height: 120px; alt="返回顶部""></a>
+           
+           
+			<div class="content">
+				<div id="large-header" class="large-header">
+					<canvas id="demo-canvas"></canvas>
+					<h1 class="main-title">星期六<span class="thin"></span></h1>
+				</div>
+				
+				<div style="position:fixed;height:90px;width:100%;left:0;top:-15px;z-index:-9999;tex-align:center">
+					<nav class="codrops-demos" style="text-align:center">
+						
+					</nav>
+				</div>
+			</div>
+			
+			
+		</div><!-- /container -->
+		<div style="position:fixed;height:90px;width:100%;left:0;bottom:5px;z-index:-999"><div class="footer-banner" style="width:728px; margin:0px auto"></div></div>
+		<a name="bar" style="position: absolute; top: 1000px;"></a>
+			<a name="zhu"></a>
+			<!--
+				表单失败
+			<form>
+		<select size="4"name="月份">
+				<option value="2019.9">2019.9</option>
+				<option value="2019.8">2019.8</option>
+				<option value="2019.7">2019.7</option>
+				<option value="2019.6">2019.6</option>
+			</select>
+				</form>
+				-->
+			
+		
+         <p style="position: relative;left: 20px;top: 10px;">选择年份</p>
+         <div style="position: relative;top: 15px;left: 680px;"><b>品牌</b>-<b>销量</b> 柱状图</div>
+		<select name="status" id="tabs" class="selector">
+         <!--<option>ALL</option>-->
+         <option>2019</option>
+        <option>2018</option>
+        <option>2017</option>
+        </select>
+    <div id="content">
+    	<a name="zhu"></a>
+        <div id ="chanpin0" class="none active">
+        	
+            <div id ="main1" class="chart" ></div>
+            
+        </div>
+
+            <div id ="chanpin1" class="none" >
+            	<a></a>
+        　         <div id ="main2" class="chart" ></div>
+        </div>
+
+        <div id ="chanpin2" class="none">
+        	<a></a>
+        　　<div id ="main3" class="chart"></div>
+        </div>
+    </div>
+     
+   
+        <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main1'));
+ 
+        // 指定图表的配置项和数据
+        var option = {
+        	grid: {  
+                left: '10%',  
+                 bottom:'35%'  
+             },  
+            title: {
+                
+               
+            },
+            tooltip: {},
+            legend: {
+            
+            	orient: 'vertical ',
+            	x: 'left', 
+            	padding:[60,0,0,20],
+            	itemGap: 25,
+            	itemWidth:  30,   
+                itemHeight: 18,
+             textStyle: { //图例文字的样式
+                            color: '#0b2b5e',
+                            fontSize: 14
+                        },
+                data:['丰田','本田','奔驰','上汽','广汽','通用','别克','日产','中产','德产',],
+                selected:{
+                '丰田':false,
+                '本田':false,
+                '奔驰':false,
+                '上汽':false,
+                '广汽':false,
+                '通用':false,
+                '别克':false,
+                '日产':false,
+                '中产':false,
+                '德产':false,
+                }
+            
+            },
+            xAxis: {
+            	name:"月份",
+            	nameTextStyle: {//字体样式
+
+   fontSize: 20,//字体大小
+
+   padding: 5 //距离坐标位置的距离
+
+},
+
+            	
+         
+            	
+            	/*axisLabel : {//坐标轴刻度标签的相关设置。
+                interval:0,
+                rotate:"45"
+            },*/
+           axisLabel: {  
+           	textStyle:{
+           		color:"black",
+           		fontSize:18,
+           	},
+                               interval: 0,  
+                               formatter:function(value)  
+                               {  
+                                   return value.split(" ").join("\n");  
+                               }  
+                           } ,
+                data: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月",
+]
+            },
+            yAxis: {
+            	name:'销量',
+            	nameTextStyle: {//字体样式
+
+   fontSize: 20,//字体大小
+
+   padding: 5 //距离坐标位置的距离
+
+},
+            	axisLabel: {
+            		textStyle:{
+            			color:"grey",
+           		fontSize:13,
+            			
+            		}
+            	},
+            },
+            series: [{
+                name: '丰田',
+                type: 'bar',
+                data: [40826,18560, 25587, 15893, 18154,14035, 18106, 14890,14773,17353,15040,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["blue",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                           },
+            },
+            {
+                name: '本田',
+                type: 'bar',
+                data: [41118,  31125, 25886, 23651, 35962,18353,12035,16890,15773,21050,14040,11973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["green",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+            },
+            {
+            	 name: '奔驰',
+                type: 'bar',
+                data: [33332, 38252, 36654,28965, 22364, 31254, 27651,25847,33651,24112,20448,20000],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["red",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                           },
+            {
+                name: '上汽',
+                type: 'bar',
+                data: [26887, 25587, 24560, 22154, 28106, 29893,30353,30890,31773,32040,33035,34973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#FFFF33",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '广汽',
+                type: 'bar',
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#006666",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '通用',
+                type: 'bar',
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#6633CC",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '别克',
+                type: 'bar',
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#9900FF",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '日产',
+                type: 'bar',
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["pink",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },
+            {
+                name: '中产',
+                type: 'bar',
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973
+
+],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },
+            {
+                name: '德产',
+                type: 'bar',
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#669999",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },
+            ]
+        };
+ 
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+  
+     
+    
+  
+   
+  
+     
+    
+  
+   <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main2'));
+ 
+        // 指定图表的配置项和数据
+        var option = {
+        	grid: {  
+                left: '10%',  
+                 bottom:'35%'  
+             },  
+            title: {
+                
+               
+            },
+            tooltip: {},
+            legend: {
+            
+            	orient: 'vertical ',
+            	x: 'left', 
+            	padding:[60,0,0,20],
+            	itemGap: 25,
+            	itemWidth:  30,   
+                itemHeight: 18,
+             textStyle: { //图例文字的样式
+                            color: '#0b2b5e',
+                            fontSize: 14
+                        },
+                data:['丰田','本田','奔驰','上汽','广汽','通用','别克','日产','中产','德产',],
+                selected:{
+                '丰田':false,
+                '本田':false,
+                '奔驰':false,
+                '上汽':false,
+                '广汽':false,
+                '通用':false,
+                '别克':false,
+                '日产':false,
+                '中产':false,
+                '德产':false,
+                }
+            
+            },
+            xAxis: {
+            	name:"月份",
+            	nameTextStyle: {//字体样式
+
+   fontSize: 20,//字体大小
+
+   padding: 5 //距离坐标位置的距离
+
+},
+            	
+            	/*axisLabel : {//坐标轴刻度标签的相关设置。
+                interval:0,
+                rotate:"45"
+            },*/
+           axisLabel: {  
+           	textStyle:{
+           		color:"black",
+           		fontSize:18,
+           	},
+                               interval: 0,  
+                               formatter:function(value)  
+                               {  
+                                   return value.split(" ").join("\n");  
+                               }  
+                           } ,
+                data: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月",
+]
+            },
+            yAxis: {
+            	name:'销量',
+            	nameTextStyle: {//字体样式
+
+   fontSize: 20,//字体大小
+
+   padding: 5 //距离坐标位置的距离
+
+},
+            	axisLabel: {
+            		textStyle:{
+            			color:"grey",
+           		fontSize:13,
+            			
+            		}
+            	},
+            },
+            series: [{
+                name: '丰田',
+                type: 'bar',
+                data: [40826,18560, 25587, 15893, 18154,14035, 18106, 14890,14773,17353,15040,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["blue",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                           },
+            },
+            {
+                name: '本田',
+                type: 'bar',
+                 data: [41118,  31125, 25886, 23651, 35962,18353,12035,16890,15773,21050,14040,11973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["green",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+            },
+            {
+            	 name: '奔驰',
+                type: 'bar',
+               data: [33332, 38252, 36654,28965, 22364, 31254, 27651,25847,33651,24112,20448,20000],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["red",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                           },
+            {
+                name: '上汽',
+                type: 'bar',
+                data: [26887, 25587, 24560, 22154, 28106, 29893,30353,30890,31773,32040,33035,34973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#FFFF33",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '广汽',
+                type: 'bar',
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#006666",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '通用',
+                type: 'bar',
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#6633CC",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '别克',
+                type: 'bar',
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#9900FF",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '日产',
+                type: 'bar',
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["pink",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },
+            {
+                name: '中产',
+                type: 'bar',
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973
+
+],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },
+            {
+                name: '德产',
+                type: 'bar',
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#669999",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },
+            ]
+        };
+ 
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+  
+   
+   
+    
+   
+    	
+    	
+
+   <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main3'));
+ 
+        // 指定图表的配置项和数据
+        var option = {
+        	grid: {  
+                left: '10%',  
+                 bottom:'35%'  
+             },  
+            title: {
+                
+               
+            },
+            tooltip: {},
+            legend: {
+            
+            	orient: 'vertical ',
+            	x: 'left', 
+            	padding:[60,0,0,20],
+            	itemGap: 25,
+            	itemWidth:  30,   
+                itemHeight: 18,
+             textStyle: { //图例文字的样式
+                            color: '#0b2b5e',
+                            fontSize: 14
+                        },
+                data:['丰田','本田','奔驰','上汽','广汽','通用','别克','日产','中产','德产',],
+                selected:{
+                '丰田':false,
+                '本田':false,
+                '奔驰':false,
+                '上汽':false,
+                '广汽':false,
+                '通用':false,
+                '别克':false,
+                '日产':false,
+                '中产':false,
+                '德产':false,
+                }
+            
+            },
+            xAxis: {
+            	name:"月份",
+            	nameTextStyle: {//字体样式
+
+   fontSize: 20,//字体大小
+
+   padding: 5 //距离坐标位置的距离
+
+},
+            	
+            	/*axisLabel : {//坐标轴刻度标签的相关设置。
+                interval:0,
+                rotate:"45"
+            },*/
+           axisLabel: {  
+           	textStyle:{
+           		color:"black",
+           		fontSize:18,
+           	},
+                               interval: 0,  
+                               formatter:function(value)  
+                               {  
+                                   return value.split(" ").join("\n");  
+                               }  
+                           } ,
+                data: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月",
+]
+            },
+            yAxis: {
+            	name:'销量',
+            	nameTextStyle: {//字体样式
+
+   fontSize: 20,//字体大小
+
+   padding: 5 //距离坐标位置的距离
+
+},
+            	axisLabel: {
+            		textStyle:{
+            			color:"grey",
+           		fontSize:13,
+            			
+            		}
+            	},
+            },
+            series: [{
+                name: '丰田',
+                type: 'bar',
+                data: [40826,18560, 25587, 15893, 18154,14035, 18106, 14890,14773,17353,15040,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["blue",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                           },
+            },
+            {
+                name: '本田',
+                type: 'bar',
+                 data: [41118,  31125, 25886, 23651, 35962,18353,12035,16890,15773,21050,14040,11973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["green",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+            },
+            {
+            	 name: '奔驰',
+                type: 'bar',
+                data: [33332, 38252, 36654,28965, 22364, 31254, 27651,25847,33651,24112,20448,20000],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["red",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                           },
+            {
+                name: '上汽',
+                type: 'bar',
+                data: [26887, 25587, 24560, 22154, 28106, 29893,30353,30890,31773,32040,33035,34973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#FFFF33",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '广汽',
+                type: 'bar',
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#006666",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '通用',
+                type: 'bar',
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#6633CC",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '别克',
+                type: 'bar',
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#9900FF",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '日产',
+                type: 'bar',
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["pink",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },
+            {
+                name: '中产',
+                type: 'bar',
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973
+
+],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },
+            {
+                name: '德产',
+                type: 'bar',
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#669999",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },
+            ]
+        };
+ 
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+  
+     
+    <a name="zhe"></a>
+         <p style="position: relative;left: 20px;top: 10px;">选择年份</p>
+         <div style="position: relative;top: 15px;left: 680px;"><b>品牌</b>-<b>销量</b> 折线图</div>
+     
+   <select name="status" id="tabs1" class="selector">
+         <!--<option>ALL</option>-->
+         <option>2019</option>
+        <option>2018</option>
+        <option>2017</option>
+        </select>
+ 
+    <div id="content">
+    	  
+        <div id ="chanpi0" class="none active">
+        	
+            <div id ="main4" class="chart" ></div>
+            
+        </div>
+
+            <div id ="chanpi1" class="none" >
+            	<a></a>
+        　         <div id ="main5" class="chart" ></div>
+        </div>
+
+        <div id ="chanpi2" class="none">
+        	<a></a>
+        　　<div id ="main6" class="chart"></div>
+        </div>
+    </div>
+    	
+    </div>
+   
+        <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main4'));
+ 
+        // 指定图表的配置项和数据
+        var option = {
+        	grid: {  
+                left: '10%',  
+                 bottom:'35%'  
+             },  
+            title: {
+                
+               
+            },
+            tooltip: {},
+            legend: {
+            
+            	orient: 'vertical ',
+            	x: 'left', 
+            	padding:[60,0,0,20],
+            	itemGap: 25,
+            	itemWidth:  30,   
+                itemHeight: 18,
+             textStyle: { //图例文字的样式
+                            color: '#0b2b5e',
+                            fontSize: 14
+                        },
+                data:['丰田','本田','奔驰','上汽','广汽','通用','别克','日产','中产','德产',],
+                selected:{
+                '丰田':false,
+                '本田':false,
+                '奔驰':false,
+                '上汽':false,
+                '广汽':false,
+                '通用':false,
+                '别克':false,
+                '日产':false,
+                '中产':false,
+                '德产':false,
+                }
+            
+            },
+            xAxis: {
+            	name:"月份",
+            	nameTextStyle: {//字体样式
+
+   fontSize: 20,//字体大小
+
+   padding: 5 //距离坐标位置的距离
+
+},
+
+            	
+         
+            	
+            	/*axisLabel : {//坐标轴刻度标签的相关设置。
+                interval:0,
+                rotate:"45"
+            },*/
+           axisLabel: {  
+           	textStyle:{
+           		color:"black",
+           		fontSize:18,
+           	},
+                               interval: 0,  
+                               formatter:function(value)  
+                               {  
+                                   return value.split(" ").join("\n");  
+                               }  
+                           } ,
+                data: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月",
+]
+            },
+            yAxis: {
+            	name:'销量',
+            	nameTextStyle: {//字体样式
+
+   fontSize: 20,//字体大小
+
+   padding: 5 //距离坐标位置的距离
+
+},
+            	axisLabel: {
+            		textStyle:{
+            			color:"grey",
+           		fontSize:13,
+            			
+            		}
+            	},
+            },
+            series: [{
+                name: '丰田',
+                type: 'line',
+                 lineStyle:{
+                	normal:{
+                		color:'blue',
+                	},
+                },
+                data: [40826,18560, 25587, 15893, 18154,14035, 18106, 14890,14773,17353,15040,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["blue",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                           },
+            },
+            {
+                name: '本田',
+               type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'green',
+                	},
+                },
+                 data: [41118,  31125, 25886, 23651, 35962,18353,12035,16890,15773,21050,14040,11973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["green",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+            },
+            {
+            	 name: '奔驰',
+                type: 'line',
+                 lineStyle:{
+                	normal:{
+                		color:'red',
+                	},
+                },
+                data: [33332, 38252, 36654,28965, 22364, 31254, 27651,25847,33651,24112,20448,20000],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["red",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                           },
+            {
+                name: '上汽',
+                type: 'line',
+                 lineStyle:{
+                	normal:{
+                		color:'#FFFF33',
+                	},
+                },
+                data: [26887, 25587, 24560, 22154, 28106, 29893,30353,30890,31773,32040,33035,34973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#FFFF33",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '广汽',
+              type: 'line',
+              lineStyle:{
+                	normal:{
+                		color:'#006666',
+                	},
+                },
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#006666",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '通用',
+               type: 'line',
+               lineStyle:{
+                	normal:{
+                		color:'#6633CC',
+                	},
+                },
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#6633CC",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '别克',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'#9900FF',
+                	},
+                },
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#9900FF",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '日产',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'pink',
+                	},
+                },
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["pink",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },
+            {
+                name: '中产',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'',
+                	},
+                },
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973
+
+],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },
+            {
+                name: '德产',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'#66999',
+                	},
+                },
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#669999",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },
+            ]
+        };
+ 
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+  
+     
+    
+  
+   
+  
+     
+    
+  
+   <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main5'));
+ 
+        // 指定图表的配置项和数据
+        var option = {
+        	grid: {  
+                left: '10%',  
+                 bottom:'35%'  
+             },  
+            title: {
+                
+               
+            },
+            tooltip: {},
+            legend: {
+            
+            	orient: 'vertical ',
+            	x: 'left', 
+            	padding:[60,0,0,20],
+            	itemGap: 25,
+            	itemWidth:  30,   
+                itemHeight: 18,
+             textStyle: { //图例文字的样式
+                            color: '#0b2b5e',
+                            fontSize: 14
+                        },
+                data:['丰田','本田','奔驰','上汽','广汽','通用','别克','日产','中产','德产',],
+                selected:{
+                '丰田':false,
+                '本田':false,
+                '奔驰':false,
+                '上汽':false,
+                '广汽':false,
+                '通用':false,
+                '别克':false,
+                '日产':false,
+                '中产':false,
+                '德产':false,
+                }
+            
+            },
+            xAxis: {
+            	name:"月份",
+            	nameTextStyle: {//字体样式
+
+   fontSize: 20,//字体大小
+
+   padding: 5 //距离坐标位置的距离
+
+},
+            	
+            	/*axisLabel : {//坐标轴刻度标签的相关设置。
+                interval:0,
+                rotate:"45"
+            },*/
+           axisLabel: {  
+           	textStyle:{
+           		color:"black",
+           		fontSize:18,
+           	},
+                               interval: 0,  
+                               formatter:function(value)  
+                               {  
+                                   return value.split(" ").join("\n");  
+                               }  
+                           } ,
+                data: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月",
+]
+            },
+            yAxis: {
+            	name:'销量',
+            	nameTextStyle: {//字体样式
+
+   fontSize: 20,//字体大小
+
+   padding: 5 //距离坐标位置的距离
+
+},
+            	axisLabel: {
+            		textStyle:{
+            			color:"grey",
+           		fontSize:13,
+            			
+            		}
+            	},
+            },
+            series: [{
+                name: '丰田',
+                lineStyle:{
+                	normal:{
+                		color:'blue',
+                	},
+                },
+                type: 'line',
+                data: [40826,18560, 25587, 15893, 18154,14035, 18106, 14890,14773,17353,15040,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["blue",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                           },
+            },
+            {
+                name: '本田',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'green',
+                	},
+                },
+                 data: [41118,  31125, 25886, 23651, 35962,18353,12035,16890,15773,21050,14040,11973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["green",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+            },
+            {
+            	 name: '奔驰',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'red',
+                	},
+                },
+                data: [33332, 38252, 36654,28965, 22364, 31254, 27651,25847,33651,24112,20448,20000],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["red",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                           },
+            {
+                name: '上汽',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'#FFFF33',
+                	},
+                },
+                data: [26887, 25587, 24560, 22154, 28106, 29893,30353,30890,31773,32040,33035,34973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#FFFF33",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '广汽',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'#006666',
+                	},
+                },
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#006666",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '通用',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'#6633CC',
+                	},
+                },
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#6633CC",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '别克',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'#9900FF',
+                	},
+                },
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#9900FF",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '日产',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'pink',
+                	},
+                },
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["pink",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },
+            {
+                name: '中产',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'',
+                	},
+                },
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973
+
+],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },
+            {
+                name: '德产',
+               type: 'line',
+               lineStyle:{
+                	normal:{
+                		color:'#66999',
+                	},
+                },
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#669999",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },
+            ]
+        };
+ 
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+  
+   
+   
+    
+    
+
+   <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main6'));
+ 
+        // 指定图表的配置项和数据
+        var option = {
+        	grid: {  
+                left: '10%',  
+                 bottom:'35%'  
+             },  
+            title: {
+                
+               
+            },
+            tooltip: {},
+            legend: {
+            
+            	orient: 'vertical ',
+            	x: 'left', 
+            	padding:[60,0,0,20],
+            	itemGap: 25,
+            	itemWidth:  30,   
+                itemHeight: 18,
+             textStyle: { //图例文字的样式
+                            color: '#0b2b5e',
+                            fontSize: 14
+                        },
+                data:['丰田','本田','奔驰','上汽','广汽','通用','别克','日产','中产','德产',],
+                selected:{
+                '丰田':false,
+                '本田':false,
+                '奔驰':false,
+                '上汽':false,
+                '广汽':false,
+                '通用':false,
+                '别克':false,
+                '日产':false,
+                '中产':false,
+                '德产':false,
+                }
+            
+            },
+            xAxis: {
+            	name:"月份",
+            	nameTextStyle: {//字体样式
+
+   fontSize: 20,//字体大小
+
+   padding: 5 //距离坐标位置的距离
+
+},
+            	
+            	/*axisLabel : {//坐标轴刻度标签的相关设置。
+                interval:0,
+                rotate:"45"
+            },*/
+           axisLabel: {  
+           	textStyle:{
+           		color:"black",
+           		fontSize:18,
+           	},
+                               interval: 0,  
+                               formatter:function(value)  
+                               {  
+                                   return value.split(" ").join("\n");  
+                               }  
+                           } ,
+                data: ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月",
+]
+            },
+            yAxis: {
+            	name:'销量',
+            	nameTextStyle: {//字体样式
+
+   fontSize: 20,//字体大小
+
+   padding: 5 //距离坐标位置的距离
+
+},
+            	axisLabel: {
+            		textStyle:{
+            			color:"grey",
+           		fontSize:13,
+            			
+            		}
+            	},
+            },
+            series: [{
+                name: '丰田',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'blue',
+                	},
+                },
+                 data: [40826,18560, 25587, 15893, 18154,14035, 18106, 14890,14773,17353,15040,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["blue",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                           },
+            },
+            {
+                name: '本田',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'green',
+                	},
+                },
+                  data: [41118,  31125, 25886, 23651, 35962,18353,12035,16890,15773,21050,14040,11973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["green",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+            },
+            {
+            	 name: '奔驰',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'red',
+                	},
+                },
+                data: [33332, 38252, 36654,28965, 22364, 31254, 27651,25847,33651,24112,20448,20000],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["red",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                           },
+            {
+                name: '上汽',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'#FFFF33',
+                	},
+                },
+                data: [26887, 25587, 24560, 22154, 28106, 29893,30353,30890,31773,32040,33035,34973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#FFFF33",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '广汽',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'#006666',
+                	},
+                },
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#006666",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '通用',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'#6633CC',
+                	},
+                },
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#6633CC",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '别克',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'#9900FF',
+                	},
+                },
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#9900FF",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },{
+                name: '日产',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'pink',
+                	},
+                },
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["pink",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },
+            {
+                name: '中产',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'',
+                	},
+                },
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973
+
+],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },
+            {
+                name: '德产',
+                type: 'line',
+                lineStyle:{
+                	normal:{
+                		color:'#669999',
+                	},
+                },
+                data: [40826, 25587, 18560, 18154, 18106, 15893,15353,14890,14773,14040,14035,13973],
+                itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["#669999",];
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+                                            
+              
+            },
+            ]
+        };
+ 
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+    <a name="sun"></a>
+    <div style="position: relative;top: 30px;">本年热门类型车及其车系</div>
+    <div id="sun" style="width: auto;height:780px;">
+    	
+    <script type="text/javascript">
+		var myCharts = echarts.init(document.getElementById('sun'));
+        var option = {
+            series: {
+                type: 'sunburst',
+                center: ['50%', '50%'],
+                levels: [{}, {}, {}, {}, {
+                    
+                    label: {
+                        position: 'outside',
+                        padding: 3,
+                        silent: false
+                    },
+                    itemStyle: {
+                        borderWidth: 3
+                    }
+                }],
+                data: [{
+                    name: '轿车',
+                     itemStyle: {
+                            color: '#4B0082'
+                        },
+                    children: [{
+                            name: '本田',
+                            itemStyle: {
+                            color: '#800080'
+                        },
+                            children: [{
+                                    name: '飞度',
+                                    itemStyle: {
+                            color: '#800080'
+                        },
+                                    children: [{
+                                        name: '2897',
+                                        itemStyle: {
+                            color: '#800080'
+                        },
+                                        value: 20
+                                    }]
+                                },
+                                {
+                                    name: '凌派',
+                                    itemStyle: {
+                            color: '#800080'
+                        },
+                                    children: [{
+                                        name: '4798',
+                                        itemStyle: {
+                            color: '#800080'
+                        },
+                                        value: 40
+                                    }]
+                                },
+                                {
+                                    name: '雅阁',
+                                     itemStyle: {
+                            color: '#800080'
+                        },
+                                    children: [{
+                                        name: '4469',
+                                        itemStyle: {
+                            color: '#800080'
+                        },
+                                        value: 30
+                                    }]
+                                },
+                                
+                            ]
+                        },
+                        {
+                            name: '丰田',
+                            itemStyle: {
+                            color: '#9932CC'
+                        },
+                              children: [{
+                                    name: '凯美瑞',
+                                     itemStyle: {
+                            color: '#9932CC'
+                        },
+                                    children: [{
+                                        name: '4221',
+                                         itemStyle: {
+                            color: '#9932CC'
+                        },
+                                        value: 20
+                                    }]
+                                },
+                                {
+                                    name: '雷凌',
+                                     itemStyle: {
+                            color: '#9932CC'
+                        },
+                                    children: [{
+                                        name: '5126',
+                                         itemStyle: {
+                            color: '#9932CC'
+                        },
+                                        value: 30
+                                    }]
+                                },
+                                
+                                
+                            ]
+                        },
+                        {
+                            name: '宝马',
+                            itemStyle: {
+                            color: '#9370DB'
+                        },
+                            children: [{
+                                    name: '宝马3系',
+                                    itemStyle: {
+                            color: '#9370DB'
+                        },
+                                    children: [{
+                                        name: '2264',
+                                        itemStyle: {
+                            color: '#9370DB'
+                        },
+                                        value: 25
+                                    }]
+                                },
+                                {
+                                    name: '宝马5系',
+                                    itemStyle: {
+                            color: '#9370DB'
+                        },
+                                    children: [{
+                                        name: '2036',
+                                        itemStyle: {
+                            color: '#9370DB'
+                        },
+                                        value: 15
+                                    }]
+                                },
+                                
+                                
+                            ]
+                            
+                         
+                        },
+                        
+                    ]
+                }, {
+                    
+                    name: '微客',
+                      itemStyle: {
+                            color: 'black'
+                        },
+                    children:[
+                    {
+                    	name:'五菱',itemStyle: {
+                            color: 'black'
+                        },
+                    	children: [{
+                                        name: '五菱宏光V',itemStyle: {
+                            color: 'black'
+                        },
+                                       children: [{
+                                        name: '5822',itemStyle: {
+                            color: 'black'
+                        },
+                                        value: 40
+                                    }]
+                                    }]
+                    }
+                    ]
+                    
+                }, {
+                   name: 'MPV',
+                    children:[
+                    {
+                    	name:'五菱',
+                    	children: [{
+                                        name: '五菱宏光S',
+                                       children: [{
+                                        name: '5933',
+                                        value: 42
+                                    }]
+                                    }]
+                    }
+                    ]
+                }, {
+                    name: 'SUV',
+                    itemStyle: {
+                            color: '#2F4F4F'
+                        },
+                    children: [{
+                            name: '吉利',
+                            itemStyle: {
+                            color: '#20B2AA'
+                        },
+                            children: [{
+                                    name: '博越',
+                                      itemStyle: {
+                            color: '#20B2AA'
+                        },
+                                    children: [{
+                                        name: '5236',
+                                         itemStyle: {
+                            color: '#20B2AA'
+                        },
+                                        value: 35
+                                    }]
+                                },
+                                {
+                                    name: '缤越',
+                                       itemStyle: {
+                            color: '#20B2AA'
+                        },
+                                    children: [{
+                                        name: '6525',
+                                          itemStyle: {
+                            color: '#20B2AA'
+                        },
+                                        value: 45
+                                    }]
+                                },
+                                
+                            ]
+                        },
+                        {
+                            name: '大众',
+                            itemStyle: {
+                            color: '#32CD32'
+                        },
+                            children: [{
+                                    name: '探岳',
+                                    itemStyle: {
+                            color: '#32CD32'
+                        },
+                                  children: [{
+                                        name: '7123',
+                                        itemStyle: {
+                            color: '#32CD32'
+                        },
+                                        value: 50
+                                    }]
+                                },
+                                {
+                                    name: 'T-ROC探歌',
+                                    itemStyle: {
+                            color: '#32CD32'
+                        },
+                                    children: [{
+                                        name: '3212',
+                                        itemStyle: {
+                            color: '#32CD32'
+                        },
+                                        value: 20
+                                    }]
+                                },
+                                
+                            ]
+                        },
+                        
+                    ]
+                }]
+            }
+        };
+        myCharts.setOption(option);
+        </script>
+       
+        <a name="pie"></a>
+        <p style="position: relative;left: 20px;top: 10px;">选择年份</p>
+         <div style="position: relative;top: 15px;left: 680px;"><b>品牌</b>-<b>销量</b> 饼图</div>
+		<select name="status" id="tabs2" class="selector">
+         <!--<option>ALL</option>-->
+         <option>2019</option>
+        <option>2018</option>
+        <option>2017</option>
+        </select>
+    <div id="content">
+    	<a name="zhu"></a>
+        <div id ="chanp0" class="none active">
+        	
+            <div id ="main7" class="chart" ></div>
+            
+        </div>
+
+            <div id ="chanp1" class="none" >
+            	<a></a>
+        　         <div id ="main8" class="chart" ></div>
+        </div>
+
+        <div id ="chanp2" class="none">
+        	<a></a>
+        　　<div id ="main9" class="chart"></div>
+        </div>
+    </div>
+    
+    	
+
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main7'));
+ 
+        // 指定图表的配置项和数据
+        var option = {
+        	grid: {  
+                left: '10%',  
+                 bottom:'35%'  
+             },  
+            title: {
+                text: ''
+            },
+             color: ['#CD5C5C', '#00CED1', '#9ACD32', '#FFC0CB'],
+            tooltip: {},
+            legend: {
+            	itemStyle: {
+                            normal: {
+                                shadowBlur: 500,
+                                shadowColor: 'rgba(0, 0, 0, 50)',
+                            }
+                        },
+            	orient: 'vertical ',
+            	x: 'left', 
+            	padding:[100,0,0,150],
+            	itemGap: 25,
+            	itemWidth:  30,   
+                itemHeight: 18,
+             textStyle: { //图例文字的样式
+                            color: '#0b2b5e',
+                            fontSize: 14
+                        },
+                data:['本田','丰田','奔驰','上汽','广汽','通用','别克','中产','日产','德产']
+            },
+            
+           
+            
+            series: [{
+                name: '数量',
+                type: 'pie',
+                roseType: 'angle',
+                data: [
+                {value: 40826, name: '本田',itemStyle: { color: 'blue' },},
+                {value: 38826, name: '丰田',itemStyle: { color: 'green' },},
+                {value: 35826, name: '奔驰',itemStyle: { color: 'red' },},
+                {value: 29826, name: '上汽',itemStyle: { color: '#FFFF33' },},
+                {value: 30826, name: '广汽',itemStyle: { color: '#006666' },},
+                {value: 25826, name: '通用',itemStyle: { color: '#6633CC' },},
+                {value: 27826, name: '别克',itemStyle: { color: '#9900FF' },},
+                {value: 31826, name: '中产',itemStyle: { color: 'black' },},
+                {value: 34826, name: '日产',itemStyle: { color: 'pink' },},
+                {value: 39826, name: '德产',itemStyle: { color: '#669999' },},
+                
+
+],
+                itemStyle:{
+                                    normal:{
+                                        color:'#9370DB'
+                                    }
+                                },
+
+              
+            }]
+        };
+ 
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+      <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main8'));
+ 
+        // 指定图表的配置项和数据
+        var option = {
+        	grid: {  
+                left: '10%',  
+                 bottom:'35%'  
+             },  
+            title: {
+                text: ''
+            },
+             color: ['#CD5C5C', '#00CED1', '#9ACD32', '#FFC0CB'],
+            tooltip: {},
+            legend: {
+            	orient: 'vertical ',
+            	x: 'left', 
+            	padding:[100,0,0,150],
+            	itemGap: 25,
+            	itemWidth:  30,   
+                itemHeight: 18,
+             textStyle: { //图例文字的样式
+                            color: '#0b2b5e',
+                            fontSize: 14
+                        },
+                data:['本田','丰田','奔驰','上汽','广汽','通用','别克','中产','日产','德产']
+            },
+            
+           
+            
+            series: [{
+                name: '数量',
+                type: 'pie',
+                roseType: 'angle',
+                data: [
+                {value: 40826, name: '本田',itemStyle: { color: 'blue' },},
+                {value: 38826, name: '丰田',itemStyle: { color: 'green' },},
+                {value: 35826, name: '奔驰',itemStyle: { color: 'red' },},
+                {value: 29826, name: '上汽',itemStyle: { color: '#FFFF33' },},
+                {value: 30826, name: '广汽',itemStyle: { color: '#006666' },},
+                {value: 25826, name: '通用',itemStyle: { color: '#6633CC' },},
+                {value: 27826, name: '别克',itemStyle: { color: '#9900FF' },},
+                {value: 31826, name: '中产',itemStyle: { color: 'black' },},
+                {value: 34826, name: '日产',itemStyle: { color: 'pink' },},
+                {value: 39826, name: '德产',itemStyle: { color: '#669999' },},
+                
+
+],
+                itemStyle:{
+                                    normal:{
+                                        color:'#9370DB'
+                                    }
+                                },
+
+              
+            }]
+        };
+ 
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+      <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main9'));
+ 
+        // 指定图表的配置项和数据
+        var option = {
+        	grid: {  
+                left: '10%',  
+                 bottom:'35%'  
+             },  
+            title: {
+                text: ''
+            },
+             color: ['#CD5C5C', '#00CED1', '#9ACD32', '#FFC0CB'],
+            tooltip: {},
+            legend: {
+            	orient: 'vertical ',
+            	x: 'left', 
+            	padding:[100,0,0,150],
+            	itemGap: 25,
+            	itemWidth:  30,   
+                itemHeight: 18,
+             textStyle: { //图例文字的样式
+                            color: '#0b2b5e',
+                            fontSize: 14
+                        },
+                data:['本田','丰田','奔驰','上汽','广汽','通用','别克','中产','日产','德产']
+            },
+            
+           
+            
+            series: [{
+                name: '数量',
+                type: 'pie',
+                roseType: 'angle',
+                data: [
+                {value: 40826, name: '本田',itemStyle: { color: 'blue' },},
+                {value: 38826, name: '丰田',itemStyle: { color: 'green' },},
+                {value: 35826, name: '奔驰',itemStyle: { color: 'red' },},
+                {value: 29826, name: '上汽',itemStyle: { color: '#FFFF33' },},
+                {value: 30826, name: '广汽',itemStyle: { color: '#006666' },},
+                {value: 25826, name: '通用',itemStyle: { color: '#6633CC' },},
+                {value: 27826, name: '别克',itemStyle: { color: '#9900FF' },},
+                {value: 31826, name: '中产',itemStyle: { color: 'black' },},
+                {value: 34826, name: '日产',itemStyle: { color: 'pink' },},
+                {value: 39826, name: '德产',itemStyle: { color: '#669999' },},
+                
+
+],
+                itemStyle:{
+                                    normal:{
+                                        color:'#9370DB'
+                                    }
+                                },
+
+              
+            }]
+        };
+ 
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+        <div ></div>
+		<script src="js/TweenLite.min.js"></script>
+		<script src="js/EasePack.min.js"></script>
+		<script src="js/rAF.js"></script>
+		<script src="js/demo-1.js"></script>
+		<script src="http://www.yyyweb.com/demo/common/jquery.min.js"></script>
+		<script src="http://www.yyyweb.com/demo/common/init.js"></script>		
+		<!--
+        	作者：offline
+        	时间：2019-12-21
+        	描述：实现平滑移动
+        -->
+	<a name="predict"></a>
+      <div style="position: relative;top: 15px;left: 680px;">本月<b>品牌</b>-<b>销量</b> 预测图</div>
+	<div id="content">
+    	
+     
+        	
+            <div id ="main10" class="chart" style="position: relative; top: -5px;width: 1400px;height: 700px; " ></div>
+            </div>
+            <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main10'));
+ 
+        // 指定图表的配置项和数据
+        option = {
+        	
+    title: {
+        
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['', ]
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+    	
+            	axisLabel: {
+            		textStyle:{
+            			color:"grey",
+           		fontSize:20,
+            			
+            		}
+            	},
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+     type: 'category',
+        data: ['德产','日产','中产','通用','广汽','上汽','别克','奔驰','本田','丰田',],
+            	axisLabel: {
+            		
+            			
+            			
+            			
+           		fontSize:20,
+            			
+            		
+            	},
+       
+    },
+    series: [
+        {
+            name: '',
+            type: 'bar',
+            data: [18236, 23489, 29034, 23547, 17548,33214,31000,20014,36579,30014 ],
+            itemStyle:{
+                                    normal:{
+                                        color:function(params) {
+                                        	var colorList=["blue","red","green","#FFFF33","#006666","#6633CC","#9900FF","black","pink","#669999",];
+                                        	
+                                        	
+                                        	
+                                        	return colorList[params.dataIndex]
+                                                               },
+                                            }
+                                            },
+        },
+        
+    ]
+};
+        myChart.setOption(option);
+    </script>
+<script>
+	var timeOut;
+	
+function scrollToTop() {
+if (document.body.scrollTop!=0 || document.documentElement.scrollTop!=0){
+window.scrollBy(0,-50);
+var audio2 = document.getElementById("audio2");
+       audio2.play();
+timeOut=setTimeout('scrollToTop()',30);
+}
+else clearTimeout(timeOut);
+}
+</script>
+
+<!--
+	作者：offline
+	时间：2019-12-23
+	描述：播放起跑声音
+-->
+<script>
+  function play(){
+       var audio = document.getElementById("audio");
+       audio.play();
+                 }
+   </script>
+   <script>
+  function yalp(){
+       var audio2 = document.getElementById("audio2");
+       audio2.play();
+                 }
+   </script>
+   
+  <script>
+  function play1(){
+       var audio1 = document.getElementById("audio1");
+       audio1.play();
+                 }
+   </script>
+   <script>
+  function play2(){
+       var audio3 = document.getElementById("audio3");
+       audio3.play();
+                 }
+   </script>
+	</body>
+</html>
