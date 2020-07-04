@@ -372,8 +372,9 @@ body {
 }
 #logo {
  position:absolute;
-bottom:45px;
-  font-size: 20px;
+top:45px;
+right:30px
+  font-size: 30px;
   line-height: 40px;
   letter-spacing: 2px;
 }
