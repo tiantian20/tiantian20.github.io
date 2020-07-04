@@ -368,8 +368,12 @@ body {
   color: #fff;
   font-weight: 300;
   text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+
 }
 #logo {
+ position:absolute;
+top:45px;
+left:50px
   font-size: 40px;
   line-height: 40px;
   letter-spacing: 2px;
